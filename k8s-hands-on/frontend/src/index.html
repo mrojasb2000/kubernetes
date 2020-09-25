@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      var xmlhttp = new XMLHttpRequest();
+      var url = "http://192.168.64.2:30000";
+
+      xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          var resp = JSON.parse(this.responseText);
+          console.log(resp);
+          document.getElementById("id01").innerHTML =
+            "<h2>La hora es: " +
+            resp.time +
+            "</h2><h2>El pod name es: " +
+            resp.hostname +
+            "</h2>";
+        }
+      };
+      xmlhttp.open("GET", url, true);
+      xmlhttp.send();
+    </script>
+  </head>
+  <body>
+    <div id="id01"></div>
+  </body>
+</html>
